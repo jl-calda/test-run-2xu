@@ -109,8 +109,7 @@ export async function POST(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
-    const body = await request.json();
-    const id = typeof body.id === "string" ? body.id : "";
+    const id = request.nextUrl.searchParams.get("id") ?? "";
 
     if (!id) {
       return NextResponse.json(

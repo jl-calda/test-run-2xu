@@ -45,10 +45,8 @@ export default function Hero({ initialRunners }: HeroProps) {
     const id = localStorage.getItem("marina-bay-runner-id");
     if (!id) return;
     try {
-      const res = await fetch("/api/runners", {
+      const res = await fetch(`/api/runners?id=${encodeURIComponent(id)}`, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
       });
       if (res.ok) {
         const runners: Runner[] = await res.json();
