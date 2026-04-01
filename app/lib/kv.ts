@@ -1,16 +1,18 @@
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { join } from "path";
-import { tmpdir } from "os";
 import { Runner } from "./types";
 
-const RUNNERS_KEY = "run:5km-marina-bay:runners";
-const STORE_FILE = join(tmpdir(), "marina-bay-runners.json");
+// Store in project .data/ dir — persists across restarts, no database needed
+const DATA_DIR = join(process.cwd(), ".data");
+const STORE_FILE = join(DATA_DIR, "runners.json");
 
-function isKvConfigured(): boolean {
-  return !!(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
+function ensureDir(): void {
+  if (!existsSync(DATA_DIR)) {
+    mkdirSync(DATA_DIR, { recursive: true });
+  }
 }
 
-function readFileStore(): Runner[] {
+export async function getRunners(): Promise<Runner[]> {
   try {
     return JSON.parse(readFileSync(STORE_FILE, "utf-8"));
   } catch {
@@ -18,26 +20,7 @@ function readFileStore(): Runner[] {
   }
 }
 
-function writeFileStore(runners: Runner[]): void {
-  writeFileSync(STORE_FILE, JSON.stringify(runners));
-}
-
-export async function getRunners(): Promise<Runner[]> {
-  if (!isKvConfigured()) {
-    return readFileStore();
-  }
-
-  const { kv } = await import("@vercel/kv");
-  const runners = await kv.get<Runner[]>(RUNNERS_KEY);
-  return runners ?? [];
-}
-
 export async function setRunners(runners: Runner[]): Promise<void> {
-  if (!isKvConfigured()) {
-    writeFileStore(runners);
-    return;
-  }
-
-  const { kv } = await import("@vercel/kv");
-  await kv.set(RUNNERS_KEY, runners);
+  ensureDir();
+  writeFileSync(STORE_FILE, JSON.stringify(runners, null, 2));
 }
