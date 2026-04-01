@@ -26,7 +26,7 @@ export default async function Home() {
       <QuickStats />
       <Tips />
       <MapButton />
-      <footer className="px-4 py-10 pb-20 text-center text-xs text-slate-500">
+      <footer className="px-4 py-10 text-center text-xs text-slate-500" style={{ paddingBottom: "max(80px, calc(60px + env(safe-area-inset-bottom)))" }}>
         <p>5km Marina Bay Jogging Route · Singapore</p>
       </footer>
     </main>

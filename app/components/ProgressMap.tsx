@@ -49,7 +49,7 @@ export default function ProgressMap({ waypoints }: ProgressMapProps) {
         visible ? "translate-y-0" : "translate-y-full"
       }`}
     >
-      <div className="mx-auto max-w-md px-4 pb-4">
+      <div className="mx-auto max-w-md px-4" style={{ paddingBottom: "max(16px, env(safe-area-inset-bottom))" }}>
         <div className="rounded-2xl bg-navy-light/90 px-4 py-3 shadow-xl backdrop-blur-md border border-navy-lighter/50">
           {/* Route line */}
           <div className="relative h-2 rounded-full bg-navy-lighter">

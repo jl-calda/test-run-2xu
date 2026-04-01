@@ -1,5 +1,13 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   title: "5km Marina Bay Jog | Gardens by the Bay → Merlion Park",
@@ -10,6 +18,10 @@ export const metadata: Metadata = {
     description:
       "Fri Apr 3, 7–8 AM. 5km scenic jog along Marina Bay waterfront, Singapore.",
     type: "website",
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
   },
 };
 

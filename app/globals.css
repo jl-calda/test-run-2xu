@@ -19,6 +19,8 @@
 html {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  /* iOS safe area support */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 body {
@@ -26,6 +28,8 @@ body {
   color: var(--color-foreground);
   font-family: var(--font-body);
   overflow-x: hidden;
+  /* Prevent pull-to-refresh interfering with scroll */
+  overscroll-behavior-y: contain;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -80,17 +84,16 @@ h1, h2, h3, h4, h5, h6 {
   animation: running-sprite 0.5s steps(2) infinite;
 }
 
-/* Mobile optimizations */
-@media (max-width: 640px) {
-  /* Larger touch targets */
-  button, a, input {
-    min-height: 44px;
-  }
-}
-
 /* Pixel art rendering */
 [style*="image-rendering: pixelated"] img,
 img[style*="image-rendering: pixelated"] {
   image-rendering: pixelated;
   image-rendering: crisp-edges;
+}
+
+/* Prevent iOS input zoom — inputs must be >= 16px */
+@supports (-webkit-touch-callout: none) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
 }

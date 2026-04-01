@@ -26,7 +26,9 @@ export default function StepName({ name, onChange, onNext }: StepNameProps) {
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && name.trim() && onNext()}
         autoFocus
-        className="w-full rounded-2xl bg-navy-lighter/80 px-5 py-4 text-center text-lg text-white placeholder-slate-400 outline-none ring-1 ring-navy-lighter focus:ring-orange transition"
+        enterKeyHint="next"
+        autoComplete="given-name"
+        className="w-full rounded-2xl bg-navy-lighter/80 px-5 py-4 text-center text-[16px] text-white placeholder-slate-400 outline-none ring-1 ring-navy-lighter focus:ring-orange transition"
       />
 
       <button

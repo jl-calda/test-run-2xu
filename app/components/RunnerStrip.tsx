@@ -44,7 +44,7 @@ export default function RunnerStrip({ initialRunners }: RunnerStripProps) {
   const emptySlots = Math.max(0, TOTAL_SLOTS - count);
 
   return (
-    <section className="sticky top-0 z-30 h-[50svh] bg-navy/95 backdrop-blur-sm flex flex-col">
+    <section className="sticky top-0 z-30 h-[45svh] max-h-[400px] bg-navy/95 backdrop-blur-sm flex flex-col">
       {/* Label */}
       <div className="px-4 pt-3 pb-2 text-center shrink-0">
         <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">

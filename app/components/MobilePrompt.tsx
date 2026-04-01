@@ -7,8 +7,9 @@ export default function MobilePrompt() {
 
   useEffect(() => {
     // Only show on larger screens (likely desktop)
-    const mq = window.matchMedia("(min-width: 768px)");
-    if (mq.matches) {
+    // Only show on non-touch desktops
+    const isDesktop = window.matchMedia("(min-width: 768px) and (pointer: fine)");
+    if (isDesktop.matches) {
       const dismissed = sessionStorage.getItem("marina-bay-desktop-ok");
       if (!dismissed) {
         setShow(true);
