@@ -4,6 +4,8 @@ import { useEffect, useState, useCallback } from "react";
 import { Runner } from "@/app/lib/types";
 import AvatarBubble from "./AvatarBubble";
 
+const TOTAL_SLOTS = 8;
+
 interface RunnerStripProps {
   initialRunners: Runner[];
 }
@@ -39,15 +41,27 @@ export default function RunnerStrip({ initialRunners }: RunnerStripProps) {
 
   const count = runners.length;
   const glow = count >= 3;
-  const ghostCount = count < 3 ? 3 - count : 0;
-
-  if (count === 0 && ghostCount === 0) return null;
+  const emptySlots = Math.max(0, TOTAL_SLOTS - count);
 
   return (
-    <section className="py-6 px-4">
-      <div className="mx-auto max-w-sm">
-        <div className="flex items-center justify-center gap-3 flex-wrap pb-3">
-          {runners.map((r, i) => (
+    <section className="sticky top-0 z-30 h-[50svh] bg-navy/95 backdrop-blur-sm flex flex-col">
+      {/* Label */}
+      <div className="px-4 pt-3 pb-2 text-center shrink-0">
+        <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
+          Run Crew
+        </p>
+        <p className="text-sm font-medium text-slate-300 mt-0.5">
+          {count === 0 && "8 open slots — be the first!"}
+          {count > 0 && count < 3 && `${count}/${TOTAL_SLOTS} joined · ${3 - count} more to start the crew`}
+          {count >= 3 && count < TOTAL_SLOTS && `\u{1F3C3} ${count}/${TOTAL_SLOTS} runners in the crew!`}
+          {count >= TOTAL_SLOTS && "\u{1F525} All slots filled!"}
+        </p>
+      </div>
+
+      {/* Avatar grid — fills remaining space */}
+      <div className="flex-1 px-3 pb-3 min-h-0">
+        <div className="grid grid-cols-4 gap-2 h-full">
+          {runners.slice(0, TOTAL_SLOTS).map((r, i) => (
             <AvatarBubble
               key={r.id}
               name={r.name}
@@ -56,19 +70,16 @@ export default function RunnerStrip({ initialRunners }: RunnerStripProps) {
               index={i}
             />
           ))}
-          {Array.from({ length: ghostCount }).map((_, i) => (
+          {Array.from({ length: emptySlots }).map((_, i) => (
             <div
-              key={`ghost-${i}`}
-              className="h-14 w-14 rounded-full border-2 border-dashed border-navy-lighter bg-navy-light/40"
-            />
+              key={`empty-${i}`}
+              className="flex flex-col items-center"
+            >
+              <div className="w-full aspect-[2/3] rounded-lg bg-white/[0.03]" />
+              <span className="mt-1 text-[10px] text-slate-600">open</span>
+            </div>
           ))}
         </div>
-        <p className="text-center text-sm font-medium text-slate-400">
-          {count === 0 && "Be the first to join!"}
-          {count > 0 && count < 3 && `${3 - count} more needed to start the crew!`}
-          {count >= 3 && count < 10 && `\u{1F3C3} ${count} runners in the crew!`}
-          {count === 10 && "\u{1F525} Run is full! All 10 slots taken."}
-        </p>
       </div>
     </section>
   );

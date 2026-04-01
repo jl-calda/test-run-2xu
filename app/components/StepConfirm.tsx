@@ -18,7 +18,7 @@ export default function StepConfirm({
   onBack,
 }: StepConfirmProps) {
   return (
-    <div className="flex flex-col items-center gap-6 px-2">
+    <div className="flex flex-col items-center gap-4 px-2">
       <div className="text-center">
         <h2 className="font-heading text-2xl font-bold text-white">
           Meet your runner!
@@ -28,21 +28,16 @@ export default function StepConfirm({
         </p>
       </div>
 
-      {/* Avatar preview with running animation */}
-      <div className="relative flex items-center justify-center">
-        <div className="h-48 w-24 overflow-hidden" style={{ imageRendering: "pixelated" }}>
+      {/* Large pixel avatar preview — takes up most of the sheet */}
+      <div className="relative flex items-center justify-center w-full" style={{ height: "40svh" }}>
+        <div className="h-full overflow-hidden" style={{ imageRendering: "pixelated", aspectRatio: "2/3" }}>
           <img
             src={avatarDataUrl}
             alt="Your pixel runner"
-            className="h-full animate-running-sprite"
-            style={{
-              imageRendering: "pixelated",
-              width: "200%",
-            }}
+            className="h-full w-full object-contain animate-running-sprite"
+            style={{ imageRendering: "pixelated" }}
           />
         </div>
-        {/* Glow ring */}
-        <div className="pointer-events-none absolute inset-0 rounded-full opacity-30 animate-pulse-glow" />
       </div>
 
       {error && (

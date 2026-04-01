@@ -15,27 +15,25 @@ export default function AvatarBubble({
 }: AvatarBubbleProps) {
   return (
     <div
-      className="group relative animate-pop-in"
+      className="group relative animate-pop-in flex flex-col items-center"
       style={{ animationDelay: `${index * 80}ms` }}
     >
       <div
-        className={`h-14 w-14 overflow-hidden rounded-full border-2 border-orange bg-navy-lighter transition-transform duration-200 group-hover:scale-110 ${
-          glow ? "animate-pulse-glow" : ""
+        className={`w-full aspect-[2/3] overflow-hidden transition-transform duration-200 group-hover:scale-105 ${
+          glow ? "animate-pulse-glow rounded-lg" : ""
         }`}
         style={{ imageRendering: "pixelated" }}
       >
-        {/* Show only first frame of sprite sheet */}
         <img
           src={avatarDataUrl}
           alt={name}
-          className="h-full animate-running-sprite"
+          className="h-full w-full object-contain animate-running-sprite"
           style={{
             imageRendering: "pixelated",
-            width: "200%",
           }}
         />
       </div>
-      <span className="pointer-events-none absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-navy-lighter px-2 py-0.5 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">
+      <span className="mt-1 text-xs font-semibold text-white truncate w-full text-center">
         {name}
       </span>
     </div>
