@@ -21,86 +21,114 @@ function isValidTraits(traits: unknown): traits is RunnerTraits {
 }
 
 export async function GET() {
-  const runners = await getRunners();
-  return NextResponse.json(runners);
+  try {
+    const runners = await getRunners();
+    return NextResponse.json(runners);
+  } catch (e) {
+    console.error("GET /api/runners error:", e);
+    return NextResponse.json(
+      { error: "Failed to load runners." },
+      { status: 500 }
+    );
+  }
 }
 
 export async function POST(request: NextRequest) {
-  const body = await request.json();
-  const name = typeof body.name === "string" ? body.name.trim() : "";
+  try {
+    const body = await request.json();
+    const name = typeof body.name === "string" ? body.name.trim() : "";
 
-  if (!name || name.length > MAX_NAME_LENGTH) {
+    if (!name || name.length > MAX_NAME_LENGTH) {
+      return NextResponse.json(
+        { error: "Name must be 1-20 characters." },
+        { status: 400 }
+      );
+    }
+
+    const avatarDataUrl =
+      typeof body.avatarDataUrl === "string" ? body.avatarDataUrl : "";
+    if (!avatarDataUrl.startsWith("data:image/png;base64,")) {
+      return NextResponse.json(
+        { error: "Invalid avatar image." },
+        { status: 400 }
+      );
+    }
+    if (avatarDataUrl.length > MAX_AVATAR_SIZE) {
+      return NextResponse.json(
+        { error: "Avatar image too large." },
+        { status: 400 }
+      );
+    }
+
+    if (!isValidTraits(body.traits)) {
+      return NextResponse.json(
+        { error: "Invalid runner traits." },
+        { status: 400 }
+      );
+    }
+
+    const runners = await getRunners();
+
+    if (runners.length >= MAX_RUNNERS) {
+      return NextResponse.json(
+        { error: "Run is full! Max 10 runners." },
+        { status: 409 }
+      );
+    }
+
+    const duplicate = runners.some(
+      (r) => r.name.toLowerCase() === name.toLowerCase()
+    );
+    if (duplicate) {
+      return NextResponse.json(
+        { error: "That name's taken, try another!" },
+        { status: 409 }
+      );
+    }
+
+    const newRunner = {
+      id: crypto.randomUUID(),
+      name,
+      avatarDataUrl,
+      traits: body.traits as RunnerTraits,
+      joinedAt: new Date().toISOString(),
+    };
+
+    const updated = [...runners, newRunner];
+    await setRunners(updated);
+
+    return NextResponse.json({ runners: updated, joined: newRunner });
+  } catch (e) {
+    console.error("POST /api/runners error:", e);
     return NextResponse.json(
-      { error: "Name must be 1-20 characters." },
-      { status: 400 }
+      { error: "Something went wrong. Please try again." },
+      { status: 500 }
     );
   }
-
-  const avatarDataUrl = typeof body.avatarDataUrl === "string" ? body.avatarDataUrl : "";
-  if (!avatarDataUrl.startsWith("data:image/png;base64,")) {
-    return NextResponse.json(
-      { error: "Invalid avatar image." },
-      { status: 400 }
-    );
-  }
-  if (avatarDataUrl.length > MAX_AVATAR_SIZE) {
-    return NextResponse.json(
-      { error: "Avatar image too large." },
-      { status: 400 }
-    );
-  }
-
-  if (!isValidTraits(body.traits)) {
-    return NextResponse.json(
-      { error: "Invalid runner traits." },
-      { status: 400 }
-    );
-  }
-
-  const runners = await getRunners();
-
-  if (runners.length >= MAX_RUNNERS) {
-    return NextResponse.json(
-      { error: "Run is full! Max 10 runners." },
-      { status: 409 }
-    );
-  }
-
-  const duplicate = runners.some(
-    (r) => r.name.toLowerCase() === name.toLowerCase()
-  );
-  if (duplicate) {
-    return NextResponse.json(
-      { error: "That name's taken, try another!" },
-      { status: 409 }
-    );
-  }
-
-  const newRunner = {
-    id: crypto.randomUUID(),
-    name,
-    avatarDataUrl,
-    traits: body.traits as RunnerTraits,
-    joinedAt: new Date().toISOString(),
-  };
-
-  const updated = [...runners, newRunner];
-  await setRunners(updated);
-
-  return NextResponse.json({ runners: updated, joined: newRunner });
 }
 
 export async function DELETE(request: NextRequest) {
-  const body = await request.json();
-  const id = typeof body.id === "string" ? body.id : "";
+  try {
+    const body = await request.json();
+    const id = typeof body.id === "string" ? body.id : "";
 
-  if (!id) {
-    return NextResponse.json({ error: "Missing runner id." }, { status: 400 });
+    if (!id) {
+      return NextResponse.json(
+        { error: "Missing runner id." },
+        { status: 400 }
+      );
+    }
+
+    const runners = await getRunners();
+    const updated = runners.filter((r) => r.id !== id);
+    await setRunners(updated);
+
+    return NextResponse.json(updated);
+  } catch (e) {
+    console.error("DELETE /api/runners error:", e);
+    return NextResponse.json(
+      { error: "Failed to remove runner." },
+      { status: 500 }
+    );
   }
-
-  const runners = await getRunners();
-  const updated = runners.filter((r) => r.id !== id);
-  await setRunners(updated);
-
-  return NextResponse.json(updated);
 }

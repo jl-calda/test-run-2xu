@@ -78,8 +78,12 @@ export default function JoinFlow({
       });
 
       if (!res.ok) {
-        const data = await res.json();
-        setError(data.error || "Something went wrong.");
+        try {
+          const data = await res.json();
+          setError(data.error || "Something went wrong.");
+        } catch {
+          setError("Something went wrong. Please try again.");
+        }
         setLoading(false);
         return;
       }
