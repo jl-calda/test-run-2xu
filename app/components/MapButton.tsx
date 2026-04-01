@@ -1,5 +1,5 @@
 const GOOGLE_MAPS_URL =
-  "https://www.google.com/maps/dir/?api=1&origin=1.2899,103.8557&destination=1.2899,103.8557&waypoints=1.2920,103.8600|1.2985,103.8630|1.3044,103.8750|1.2987,103.8730|1.2960,103.8650|1.2930,103.8580&travelmode=walking";
+  "https://www.google.com/maps/dir/?api=1&origin=The+Esplanade+Singapore&destination=The+Esplanade+Singapore&waypoints=1.2935,103.8595|1.2995,103.8648|1.3044,103.8750|1.2978,103.8738|1.2968,103.8668|1.2935,103.8590&travelmode=walking";
 
 export default function MapButton() {
   return (

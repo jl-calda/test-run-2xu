@@ -3,12 +3,13 @@
 import RouteSection, { Waypoint } from "./RouteSection";
 import ProgressMap from "./ProgressMap";
 
+// Distances measured via Google Maps walking directions between landmarks
 const WAYPOINTS: Waypoint[] = [
   {
     id: "wp-start",
     km: "0",
     name: "The Esplanade (START)",
-    desc: "Flag off at Raffles Avenue. Head north along the Marina Promenade!",
+    desc: "Flag off at Raffles Avenue. Head north along Marina Promenade!",
     icon: "\u{1F3C3}",
     gradient: "bg-gradient-to-b from-navy via-amber-950/40 to-navy",
     effect: "sparkle",
@@ -16,9 +17,9 @@ const WAYPOINTS: Waypoint[] = [
   },
   {
     id: "wp-promenade",
-    km: "2",
+    km: "1.2",
     name: "Marina Promenade",
-    desc: "Waterfront stretch heading north. City skyline on your left, bay breeze on your right.",
+    desc: "Heading north along the waterfront. The bay stretches out beside you.",
     icon: "\u{1F309}",
     gradient: "bg-gradient-to-b from-navy via-cyan-950/40 to-navy",
     effect: "ripple",
@@ -26,9 +27,9 @@ const WAYPOINTS: Waypoint[] = [
   },
   {
     id: "wp-crawford",
-    km: "3",
+    km: "2.8",
     name: "Crawford / Nicoll Highway",
-    desc: "Turn northeast past the Crawford junction. Push through the urban stretch.",
+    desc: "Turn northeast at the junction. Urban stretch along Nicoll Highway.",
     icon: "\u{1F6E3}\u{FE0F}",
     gradient: "bg-gradient-to-b from-navy via-slate-800/40 to-navy",
     effect: "twinkle",
@@ -36,9 +37,9 @@ const WAYPOINTS: Waypoint[] = [
   },
   {
     id: "wp-stadium",
-    km: "5",
+    km: "4.6",
     name: "National Stadium",
-    desc: "Loop around Singapore\u2019s iconic 55,000-seat dome. Halfway mark!",
+    desc: "Loop around Singapore\u2019s 55,000-seat dome. Almost halfway!",
     icon: "\u{1F3DF}\u{FE0F}",
     gradient: "bg-gradient-to-b from-navy via-purple-950/40 to-navy",
     effect: "rays",
@@ -46,9 +47,9 @@ const WAYPOINTS: Waypoint[] = [
   },
   {
     id: "wp-tanjong-rhu",
-    km: "6",
+    km: "5.8",
     name: "Tanjong Rhu",
-    desc: "Scenic loop through Tanjong Rhu. Quieter streets, greenery, and the river bend.",
+    desc: "Scenic detour through Tanjong Rhu. Quiet streets and river views.",
     icon: "\u{1F333}",
     gradient: "bg-gradient-to-b from-navy via-green-950/40 to-navy",
     effect: "leaves",
@@ -56,9 +57,9 @@ const WAYPOINTS: Waypoint[] = [
   },
   {
     id: "wp-return",
-    km: "8",
+    km: "7.5",
     name: "Nicoll Highway Return",
-    desc: "Heading back south along Nicoll Highway. You can see the finish from here!",
+    desc: "Back on Nicoll Highway heading south. The finish is close!",
     icon: "\u{26A1}",
     gradient: "bg-gradient-to-b from-navy via-orange-950/30 to-navy",
     effect: "butterfly",
@@ -66,9 +67,9 @@ const WAYPOINTS: Waypoint[] = [
   },
   {
     id: "wp-promenade-south",
-    km: "9",
+    km: "8.8",
     name: "Marina Promenade South",
-    desc: "Final stretch along the promenade. The Esplanade domes are in sight!",
+    desc: "Final stretch south. The Esplanade domes are right ahead!",
     icon: "\u{1F525}",
     gradient: "bg-gradient-to-b from-navy via-red-950/30 to-navy",
     effect: "twinkle",
@@ -78,7 +79,7 @@ const WAYPOINTS: Waypoint[] = [
     id: "wp-finish",
     km: "10",
     name: "The Esplanade (FINISH)",
-    desc: "Cross the finish line at Raffles Avenue! You did it \u2014 10km done!",
+    desc: "Cross the line at Raffles Avenue! 10km done!",
     icon: "\u{1F3C1}",
     gradient: "bg-gradient-to-b from-navy via-amber-950/40 to-navy",
     effect: "confetti",
@@ -94,7 +95,7 @@ export default function RouteExperience() {
           The Route
         </h2>
         <p className="mt-2 text-sm text-slate-400">
-          10km loop \u2014 scroll through each waypoint
+          10km loop — scroll through each waypoint
         </p>
       </div>
 
