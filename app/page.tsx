@@ -1,10 +1,11 @@
 import { getRunners } from "@/app/lib/kv";
 import Hero from "@/app/components/Hero";
 import RunnerStrip from "@/app/components/RunnerStrip";
-import RouteTimeline from "@/app/components/RouteTimeline";
+import RouteExperience from "@/app/components/RouteExperience";
 import QuickStats from "@/app/components/QuickStats";
 import Tips from "@/app/components/Tips";
 import MapButton from "@/app/components/MapButton";
+import MobilePrompt from "@/app/components/MobilePrompt";
 
 export const dynamic = "force-dynamic";
 
@@ -13,34 +14,19 @@ export default async function Home() {
   try {
     initialRunners = await getRunners();
   } catch {
-    // KV unavailable, start with empty
+    // KV unavailable
   }
 
   return (
     <main className="min-h-screen bg-navy">
+      <MobilePrompt />
       <Hero initialRunners={initialRunners} />
       <RunnerStrip initialRunners={initialRunners} />
-
-      <div className="mx-auto max-w-4xl">
-        <hr className="border-navy-lighter" />
-      </div>
-
+      <RouteExperience />
       <QuickStats />
-
-      <div className="mx-auto max-w-4xl">
-        <hr className="border-navy-lighter" />
-      </div>
-
-      <RouteTimeline />
-
-      <div className="mx-auto max-w-4xl">
-        <hr className="border-navy-lighter" />
-      </div>
-
       <Tips />
       <MapButton />
-
-      <footer className="px-4 py-8 text-center text-xs text-slate-500">
+      <footer className="px-4 py-10 pb-20 text-center text-xs text-slate-500">
         <p>5km Marina Bay Jogging Route · Singapore</p>
       </footer>
     </main>

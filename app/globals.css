@@ -11,19 +11,28 @@
   --color-yellow: #facc15;
   --color-green: #22c55e;
   --color-green-dark: #16a34a;
-  --font-heading: "Outfit", sans-serif;
-  --font-body: "DM Sans", sans-serif;
+  --font-heading: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
   background: var(--color-navy);
   color: var(--color-foreground);
   font-family: var(--font-body);
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
+
+/* ---- Animations ---- */
 
 @keyframes pulse-glow {
   0%, 100% { box-shadow: 0 0 8px rgba(249, 115, 22, 0.4); }
@@ -41,6 +50,16 @@ h1, h2, h3, h4, h5, h6 {
   100% { transform: translateY(0); opacity: 1; }
 }
 
+@keyframes slide-up {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes running-sprite {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
 }
@@ -51,4 +70,27 @@ h1, h2, h3, h4, h5, h6 {
 
 .animate-fade-up {
   animation: fade-up 0.5s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.35s ease-out forwards;
+}
+
+.animate-running-sprite {
+  animation: running-sprite 0.5s steps(2) infinite;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  /* Larger touch targets */
+  button, a, input {
+    min-height: 44px;
+  }
+}
+
+/* Pixel art rendering */
+[style*="image-rendering: pixelated"] img,
+img[style*="image-rendering: pixelated"] {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
