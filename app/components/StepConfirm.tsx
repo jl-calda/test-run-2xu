@@ -30,12 +30,12 @@ export default function StepConfirm({
 
       {/* Large pixel avatar preview — takes up most of the sheet */}
       <div className="relative flex items-center justify-center w-full" style={{ height: "40svh" }}>
-        <div className="h-full overflow-hidden" style={{ imageRendering: "pixelated", aspectRatio: "2/3" }}>
+        <div className="h-full overflow-hidden" style={{ aspectRatio: "2/3" }}>
           <img
             src={avatarDataUrl}
             alt="Your pixel runner"
-            className="h-full w-full object-contain animate-running-sprite"
-            style={{ imageRendering: "pixelated" }}
+            className="h-full animate-running-sprite"
+            style={{ imageRendering: "pixelated", width: "200%", maxWidth: "none" }}
           />
         </div>
       </div>
