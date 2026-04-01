@@ -1,22 +1,30 @@
+import { readFileSync, writeFileSync } from "fs";
+import { join } from "path";
+import { tmpdir } from "os";
 import { Runner } from "./types";
 
 const RUNNERS_KEY = "run:5km-marina-bay:runners";
-
-// Use globalThis to persist in-memory store across Next.js hot reloads
-const globalStore = globalThis as typeof globalThis & {
-  __marinaBayRunners?: Runner[];
-};
-if (!globalStore.__marinaBayRunners) {
-  globalStore.__marinaBayRunners = [];
-}
+const STORE_FILE = join(tmpdir(), "marina-bay-runners.json");
 
 function isKvConfigured(): boolean {
   return !!(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
 }
 
+function readFileStore(): Runner[] {
+  try {
+    return JSON.parse(readFileSync(STORE_FILE, "utf-8"));
+  } catch {
+    return [];
+  }
+}
+
+function writeFileStore(runners: Runner[]): void {
+  writeFileSync(STORE_FILE, JSON.stringify(runners));
+}
+
 export async function getRunners(): Promise<Runner[]> {
   if (!isKvConfigured()) {
-    return globalStore.__marinaBayRunners!;
+    return readFileStore();
   }
 
   const { kv } = await import("@vercel/kv");
@@ -26,7 +34,7 @@ export async function getRunners(): Promise<Runner[]> {
 
 export async function setRunners(runners: Runner[]): Promise<void> {
   if (!isKvConfigured()) {
-    globalStore.__marinaBayRunners = runners;
+    writeFileStore(runners);
     return;
   }
 
