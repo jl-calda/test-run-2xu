@@ -1,8 +1,8 @@
 const stats = [
   { label: "Date", value: "Fri, Apr 3", icon: "\u{1F4C5}" },
-  { label: "Time", value: "7 – 8 AM", icon: "\u{23F0}" },
-  { label: "Distance", value: "~5.0 km", sub: "100% paved, flat", icon: "\u{1F4CF}" },
-  { label: "Difficulty", value: "Easy", sub: "30 min @ 6 min/km", icon: "\u{2705}" },
+  { label: "Time", value: "7 \u2013 8 AM", icon: "\u{23F0}" },
+  { label: "Distance", value: "10 km", sub: "100% paved, flat", icon: "\u{1F4CF}" },
+  { label: "Difficulty", value: "Moderate", sub: "~60 min @ 6 min/km", icon: "\u{1F4AA}" },
 ];
 
 export default function QuickStats() {

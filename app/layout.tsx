@@ -10,13 +10,13 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "5km Marina Bay Jog | Gardens by the Bay → Merlion Park",
+  title: "10km Race | The Esplanade Loop via National Stadium",
   description:
-    "Fri Apr 3, 7–8 AM. Join a scenic 5km jog along Singapore's Marina Bay waterfront. Gardens by the Bay MRT → Merlion Park. Supertree Grove, Dragonfly Lake, zero road crossings.",
+    "Fri Apr 3, 7–8 AM. 10km race loop from The Esplanade through Marina Promenade, Nicoll Highway, National Stadium, Tanjong Rhu and back. Singapore.",
   openGraph: {
-    title: "5km Marina Bay Jog | Fri Apr 3, 7 AM",
+    title: "10km Race | Fri Apr 3, 7 AM | Singapore",
     description:
-      "Fri Apr 3, 7–8 AM. 5km scenic jog along Marina Bay waterfront, Singapore.",
+      "Fri Apr 3, 7–8 AM. 10km race loop from The Esplanade via National Stadium, Singapore.",
     type: "website",
   },
   appleWebApp: {

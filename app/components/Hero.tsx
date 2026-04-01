@@ -74,25 +74,25 @@ export default function Hero({ initialRunners }: HeroProps) {
 
       <div className="relative z-10 flex flex-col items-center gap-6">
         <p className="text-xs font-semibold uppercase tracking-[0.25em] text-orange">
-          Friday Apr 3 · 7 – 8 AM · 5km · Singapore
+          Friday Apr 3 · 7 – 8 AM · 10km · Singapore
         </p>
 
         <h1 className="font-heading text-4xl font-extrabold leading-[1.1] sm:text-5xl lg:text-6xl">
           <span className="bg-gradient-to-r from-orange to-yellow bg-clip-text text-transparent">
-            5km Scenic Jog
+            10km Race
           </span>
           <br />
           <span className="text-white text-3xl sm:text-4xl lg:text-5xl">
-            Gardens by the Bay
+            The Esplanade Loop
           </span>
           <br />
           <span className="text-white text-3xl sm:text-4xl lg:text-5xl">
-            → Merlion Park
+            via National Stadium
           </span>
         </h1>
 
         <p className="max-w-xs text-sm text-slate-400">
-          Supertree Grove · Dragonfly Lake · Marina Bay waterfront · Zero road crossings
+          Marina Promenade · Nicoll Highway · National Stadium · Tanjong Rhu
         </p>
 
         {/* CTA */}

@@ -1,5 +1,5 @@
 const GOOGLE_MAPS_URL =
-  "https://www.google.com/maps/dir/?api=1&origin=1.27973,103.86797&destination=1.2867449,103.8543872&waypoints=1.2820,103.8639|1.2802,103.8655|1.2816,103.8622|1.2844,103.8583|1.2817,103.8541&travelmode=walking";
+  "https://www.google.com/maps/dir/?api=1&origin=1.2899,103.8557&destination=1.2899,103.8557&waypoints=1.2920,103.8600|1.2985,103.8630|1.3044,103.8750|1.2987,103.8730|1.2960,103.8650|1.2930,103.8580&travelmode=walking";
 
 export default function MapButton() {
   return (
@@ -8,7 +8,7 @@ export default function MapButton() {
         href={GOOGLE_MAPS_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-orange to-yellow px-8 py-4 font-heading text-lg font-bold text-navy transition hover:opacity-90"
+        className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-orange to-yellow px-8 py-4 font-heading text-lg font-bold text-navy transition hover:opacity-90 active:scale-95"
       >
         <svg
           className="h-5 w-5"
