@@ -4,11 +4,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "5km Marina Bay Jog | Gardens by the Bay → Merlion Park",
   description:
-    "Join a scenic 5km jogging route along Singapore's Marina Bay waterfront. From Gardens by the Bay MRT to Merlion Park — Supertree Grove, Dragonfly Lake, zero road crossings.",
+    "Fri Apr 3, 7–8 AM. Join a scenic 5km jog along Singapore's Marina Bay waterfront. Gardens by the Bay MRT → Merlion Park. Supertree Grove, Dragonfly Lake, zero road crossings.",
   openGraph: {
-    title: "5km Marina Bay Jog | Gardens by the Bay → Merlion Park",
+    title: "5km Marina Bay Jog | Fri Apr 3, 7 AM",
     description:
-      "Join a scenic 5km jogging route along Singapore's Marina Bay waterfront.",
+      "Fri Apr 3, 7–8 AM. 5km scenic jog along Marina Bay waterfront, Singapore.",
     type: "website",
   },
 };

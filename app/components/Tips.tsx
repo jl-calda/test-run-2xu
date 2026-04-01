@@ -11,7 +11,7 @@ const tips = [
   {
     title: "Best Time to Run",
     content:
-      "Early morning (6-7 AM) for cooler temps and sunrise views, or evening (6:30-7:30 PM) for the Marina Bay light show. Avoid midday — Singapore heat is no joke!",
+      "We're running 7–8 AM on Friday April 3 — perfect for cooler temps and golden hour light. Arrive by 6:50 AM at Gardens by the Bay MRT (TE22) for a warm-up.",
   },
   {
     title: "Shade & Cover",

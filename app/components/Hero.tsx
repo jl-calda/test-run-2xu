@@ -74,7 +74,7 @@ export default function Hero({ initialRunners }: HeroProps) {
 
       <div className="relative z-10 flex flex-col items-center gap-6">
         <p className="text-xs font-semibold uppercase tracking-[0.25em] text-orange">
-          Singapore · 5km · Flat · Scenic
+          Friday Apr 3 · 7 – 8 AM · 5km · Singapore
         </p>
 
         <h1 className="font-heading text-4xl font-extrabold leading-[1.1] sm:text-5xl lg:text-6xl">
