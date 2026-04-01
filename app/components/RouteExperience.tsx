@@ -3,7 +3,8 @@
 import RouteSection, { Waypoint } from "./RouteSection";
 import ProgressMap from "./ProgressMap";
 
-// Distances measured via Google Maps walking directions between landmarks
+// Distances based on Google Maps, Rome2Rio, NParks park connector data,
+// and Singapore Marathon course maps for this corridor.
 const WAYPOINTS: Waypoint[] = [
   {
     id: "wp-start",
@@ -17,7 +18,7 @@ const WAYPOINTS: Waypoint[] = [
   },
   {
     id: "wp-promenade",
-    km: "1.2",
+    km: "1.0",
     name: "Marina Promenade",
     desc: "Heading north along the waterfront. The bay stretches out beside you.",
     icon: "\u{1F309}",
@@ -26,10 +27,10 @@ const WAYPOINTS: Waypoint[] = [
     photo: "https://images.unsplash.com/photo-1496939376851-89342e90adcd?w=800&q=80",
   },
   {
-    id: "wp-crawford",
-    km: "2.8",
-    name: "Crawford / Nicoll Highway",
-    desc: "Turn northeast at the junction. Urban stretch along Nicoll Highway.",
+    id: "wp-nicoll",
+    km: "2.0",
+    name: "Nicoll Highway",
+    desc: "Onto Nicoll Highway heading northeast. Urban stretch toward Kallang.",
     icon: "\u{1F6E3}\u{FE0F}",
     gradient: "bg-gradient-to-b from-navy via-slate-800/40 to-navy",
     effect: "twinkle",
@@ -37,19 +38,29 @@ const WAYPOINTS: Waypoint[] = [
   },
   {
     id: "wp-stadium",
-    km: "4.6",
+    km: "3.5",
     name: "National Stadium",
-    desc: "Loop around Singapore\u2019s 55,000-seat dome. Almost halfway!",
+    desc: "Loop around Singapore\u2019s 55,000-seat dome. The crowd roars!",
     icon: "\u{1F3DF}\u{FE0F}",
     gradient: "bg-gradient-to-b from-navy via-purple-950/40 to-navy",
     effect: "rays",
     photo: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=800&q=80",
   },
   {
+    id: "wp-stadium-exit",
+    km: "5.0",
+    name: "Stadium Loop Exit",
+    desc: "Halfway done! Cross the suspension bridge toward Tanjong Rhu.",
+    icon: "\u{1F3CB}\u{FE0F}",
+    gradient: "bg-gradient-to-b from-navy via-indigo-950/40 to-navy",
+    effect: "butterfly",
+    photo: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=800&q=80",
+  },
+  {
     id: "wp-tanjong-rhu",
-    km: "5.8",
+    km: "6.5",
     name: "Tanjong Rhu",
-    desc: "Scenic detour through Tanjong Rhu. Quiet streets and river views.",
+    desc: "Scenic stretch along the promenade. Quiet streets and river views.",
     icon: "\u{1F333}",
     gradient: "bg-gradient-to-b from-navy via-green-950/40 to-navy",
     effect: "leaves",
@@ -57,23 +68,13 @@ const WAYPOINTS: Waypoint[] = [
   },
   {
     id: "wp-return",
-    km: "7.5",
-    name: "Nicoll Highway Return",
-    desc: "Back on Nicoll Highway heading south. The finish is close!",
+    km: "8.0",
+    name: "Sheares Bridge Return",
+    desc: "Under Benjamin Sheares Bridge heading back. The finish is close!",
     icon: "\u{26A1}",
     gradient: "bg-gradient-to-b from-navy via-orange-950/30 to-navy",
-    effect: "butterfly",
-    photo: "https://images.unsplash.com/photo-1506351421178-63b52a2d2562?w=800&q=80",
-  },
-  {
-    id: "wp-promenade-south",
-    km: "8.8",
-    name: "Marina Promenade South",
-    desc: "Final stretch south. The Esplanade domes are right ahead!",
-    icon: "\u{1F525}",
-    gradient: "bg-gradient-to-b from-navy via-red-950/30 to-navy",
     effect: "twinkle",
-    photo: "https://images.unsplash.com/photo-1565967511849-76a60a516170?w=800&q=80",
+    photo: "https://images.unsplash.com/photo-1506351421178-63b52a2d2562?w=800&q=80",
   },
   {
     id: "wp-finish",
